@@ -1,0 +1,255 @@
+
+/*   ----- Imports  -----  */
+@import url('https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:wght@400;600&display=swap');
+
+/*@import '../node_modules/modern-normalize/modern-normalize.css';*/
+/* npm install modern-normalize 
+  Resets elements for browser consistancy.  
+*/
+
+/*   ----- Variables  -----  */
+:root {
+  --darker: rgba(6, 13, 114, 0.74);
+  --mediumer: rgb(41, 93, 175);
+  --lighter:rgb(122, 176, 214);
+}
+
+/*  ----- Viewport ----- elements inherited by all remaining elements ----- */
+body {       /* Can alternatively define in html {} or :root {} */
+  color:;
+  background-color:var(--lighter);
+  font-family: 'Oberon', serif;
+  font-size: 18px;
+  margin:5%;
+  padding:0%;
+}
+
+/*  ----- Navigation ----- Override text links for navigation only.  */
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #aa7304;
+  color: white;
+}
+
+
+/*  ----- Page layout blocks -----  */
+header {
+  background-color:;
+  color:;
+  border:;
+  font-size:;
+  font-weight:;
+  padding:;
+  text-align:;
+  position:; 
+  top: 0px;
+}
+main {
+  background-color:;
+  color:;
+  border:;
+  padding:0%;
+}
+section {}
+  article {
+    border: 2px var(--darker);
+    padding: 0%; 
+    margin-top: 10pt;
+    margin-left: 10pt;
+    margin-right: 10pt;
+    margin-bottom: 10pt;
+  }
+    #topic1 {}
+    #topic2 {}
+    #gallery1 {}
+    #gallery2 {}
+div {
+}
+aside {}
+footer {
+  background-color:var(--mediumer);
+  color:white;
+  border:;
+  font-size:;
+  font-weight:;
+  margin:;
+  padding:;
+  text-align: center;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%
+}
+
+/*  -----  Typography  ----- */
+p {}
+br {}
+li:nth-child(even) {}
+dt {}
+dd {}
+
+h1, h2, h3, h4, h5, h6 {} /* Define consistant font family.*/
+h1 {  
+  background-color:;
+  color:;
+  border:;
+  font-size: 2em;
+  font-weight:bold;
+  margin:0pt;
+  padding:30px;
+  text-align: center;
+}
+h2 {
+  background-color:;
+  color:;
+  border:;
+  font-size: 1.5em;
+  font-weight:bold;
+  margin:0px;
+  padding:50px 0px 10px;
+  text-align: left;
+}
+h3 {}
+h4 {}
+h5 {}
+h6 {}
+
+abbr {}
+acronym {}
+address {}
+blockquote {}
+  q {}
+  cite {}
+em {}
+hr {}
+mark {}
+s {}
+span {}
+strong {}
+sub {}
+sup {}
+time {}
+
+/*  ----- Coding or instructional typography ----- */
+pre {}
+code {}
+kbd {}
+samp {}
+var {}
+del {} 
+ins {}
+
+
+
+/*  ----- Table ----- */
+table {
+  border-collapse:collapse;
+  width: 100%;
+  table-layout: fixed
+}
+caption {}
+thead {
+  background-color: var(--darker);
+  color: whitesmoke;
+  font-weight: bold;
+  text-align: center;
+  padding-right: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-size: 1.1em;
+}
+tbody {
+  color: darkblue;
+  background-color: whitesmoke;
+}
+tfoot {}
+tr {
+  border: 1px solid darkblue;
+}
+  tr:nth-child(even) {
+    background-color: rgb(249, 221, 200);
+  }
+th {
+  border: 1px solid darkblue;
+
+}
+td {
+  border: 1px solid darkblue;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  word-wrap: break-word;
+}
+  td:nth-child(1) {}
+colgroup {}
+data {}
+datalist {}
+
+
+/*  ----- Form ----- */
+button {
+    background-color: #515050; 
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    padding:0px 15px;
+    text-align: center;
+    text-decoration: ;
+    display:;
+    font-size:1.05em;
+  }
+  button:hover {
+  background-color: #ddd;
+  color: black;
+    cursor: pointer;
+  }
+  input {
+    font-family:;
+    padding:;
+  }
+  output {}
+  meter {}
+  progress {}
+  select {}
+    optgroup {}
+    option {}
+  textarea {}
+
+/* ----- Media ----- */
+figure {}
+  figcaption {}
+img {}
+svg {}
+picture {}
+  source {}
+iframe {}
+video {}
+audio {}
+embed {}
+object {}
+
+

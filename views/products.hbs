@@ -1,0 +1,61 @@
+<h1>Products</h1>
+<div class="topnav">
+<a href="/">Home</a>
+<a href="customers">Customers</a>
+<a href="salesreps">Sales Reps</a>
+<a href="terms">Terms</a>
+<a class="active" href="products">Products</a>
+<a href="salesinvoices">Sales Invoices</a>
+<a href="salesdetails">Sales Invoice Details</a>
+</div>
+<p>Browse, Add, and Delete Products</p>
+<p>Search by product name using the field below. Partial product names are OK too!</p>
+<form id="search-product-html" method='GET' action='/products'>
+    <label for="input-productname">Search by Product Name: </label>
+    <input type="text" name="productname" id="input-productname-html-search">
+    
+    <input type="submit">
+    <a href='/products'><button>Reset</button></a>
+</form>
+{{!-- Create a table --}}
+<table id="product-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Product Price ($)</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, businessname, firstname, lastname, address1, address2, city, state, zipscode, email and phone, in order --}}
+        {{#each data}}
+        <tr data-value={{this.idProduct}}>
+            <td>{{this.idProduct}}</td>
+            <td>{{this.productName}}</td>
+            <td>{{this.productPrice}}</td>
+            <td><button onclick="deleteProduct({{this.idProduct}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_product.js"></script>
+<h2>Add A New Product</h2>
+<p>To add a new Product, please enter the requested information below and click `Submit`!</p>
+<form id="add-product-form" method="POST" action="/add-product-form"> 
+    <label for="input-productname">Product Name: </label>
+    <input type="text" name="input-productname" id="input-productname" required>
+
+    <label for="input-productprice">Product Price: </label>
+    <input type="number" min="0.00" step="0.01" name="input-productprice" id="input-productprice" required>
+
+    <input type="submit">
+</form>

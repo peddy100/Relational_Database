@@ -1,0 +1,102 @@
+<!-- customers.hbs -->
+<h1>Customers</h1>
+<div class="topnav">
+<a href="/">Home</a>
+<a class="active" href="customers">Customers</a>
+<a href="salesreps">Sales Reps</a>
+<a href="terms">Terms</a>
+<a href="products">Products</a>
+<a href="salesinvoices">Sales Invoices</a>
+<a href="salesdetails">Sales Invoice Details</a>
+</div>
+<p>Browse, Add, and Delete Customers</p>
+<p>Search by business name using the field below. Partial last names are OK too!</p>
+<form id="search-customer-html" method='GET' action='/customers'>
+    <label for="input-businessname">Search by Business Name: </label>
+    <input type="text" name="businessname" id="input-businessname-html-search">
+    
+    <input type="submit">
+    <a href='customers'><button>Reset</button></a>
+</form>
+{{!-- Create a table --}}
+<table id="customer-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Customer ID</th>
+            <th>Business Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address 1</th>
+            <th>Address 2</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+            <th>Email</th>
+            <th>Phone</th>       
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, businessname, firstname, lastname, address1, address2, city, state, zipscode, email and phone, in order --}}
+        {{#each data}}
+        <tr data-value={{this.idCustomer}}>
+            <td>{{this.idCustomer}}</td>
+            <td>{{this.businessName}}</td>
+            <td>{{this.firstName}}</td>
+            <td>{{this.lastName}}</td>
+            <td>{{this.address1}}</td>
+            <td>{{this.address2}}</td>
+            <td>{{this.city}}</td>
+            <td>{{this.state}}</td>
+            <td>{{this.zipCode}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.phone}}</td>
+            <td><button onclick="deleteCustomer({{this.idCustomer}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_customer.js"></script>
+<h2>Add A New Customer</h2>
+<p>To add a new customer, please enter their information below and click `Submit`!</p>
+<form id="add-customer-form" method="POST" action="/add-customer-form">
+    <label for="input-businessname">Business Name: </label>
+    <input type="text" name="input-businessname" id="input-businessname" required>
+    
+    <label for="input-firstname">First Name: </label>
+    <input type="text" name="input-firstname" id="input-firstname" required>
+
+    <label for="input-lastname">Last Name: </label>
+    <input type="text" name="input-lastname" id="input-lastname" required>
+
+    <label for="input-address1">Address 1: </label>
+    <input type="text" name="input-address1" id="input-address1">
+
+    <label for="input-address2">Address 2: </label>
+    <input type="text" name="input-address2" id="input-address2">
+
+    <label for="input-city">City: </label>
+    <input type="text" name="input-city" id="input-city">
+
+    <label for="input-state">State: </label>
+    <input type="text" name="input-state" id="input-state">
+
+    <label for="input-zipcode">Zip Code: </label>
+    <input type="number" name="input-zipcode" id="input-zipcode">
+
+    <label for="input-email">eMail: </label>
+    <input type="email" name="input-email" id="input-email" required>
+
+    <label for="input-phone">Phone: </label>
+    <input type="tel" name="input-phone" id="input-phone" placeholder="123-456-6789" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+
+    <input type="submit">
+</form>

@@ -1,0 +1,88 @@
+<!-- salesdetails.hbs -->
+<h1>Sales Invoice Details</h1>
+<div class="topnav">
+<a href="/">Home</a>
+<a href="customers">Customers</a>
+<a href="salesreps">Sales Reps</a>
+<a href="terms">Terms</a>
+<a href="products">Products</a>
+<a href="salesinvoices">Sales Invoices </a>
+<a class="active" href="salesdetails">Sales Invoice Details</a>
+</div>
+<p>Browse, Add, Update, and Delete Sales Invoice Details</p>
+<table id="salesdetail-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Sales Details ID</th>
+            <th>Sales Invoice ID</th>
+            <th>Product ID</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the idTerm and description, in order --}}
+        {{#each data}}
+        <tr data-value={{this.idSalesDetails}}>
+            <td>{{this.idSalesDetails}}</td>
+            <td>{{this.idSalesInvoice}}</td>
+            <td>{{this.idProduct}}</td>
+            <td><button onclick="deleteSalesDetail({{this.idSalesDetails}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_salesdetail.js"></script>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Adding New Sales Invoice Detail</h2>
+<p>To add a new sales invoice detail, please enter the information below and click 'Submit'!</p>
+<form id="add-salesdetail-form-ajax">
+    <label for="input-salesinvoice"> Sales Invoice </label>
+    <input type="number" name="input-salesinvoice" id="input-salesinvoice">
+    
+    <label for="input-product"> Product </label>
+    <select name="input-product" id="input-product">
+        <option value="">Select a Product</option>
+        {{#each products}}
+        <option value="{{this.idProduct}}">{{this.productName}}</option>
+        {{/each}}
+    </select>
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_salesdetail.js"></script>
+
+{{!-- Form to update record  --}}
+<h2>Updating A Sales Invoice Product Form</h2>
+<p>To update a specific sales invoice's product select their number from the drop-down menu on the left and their desired product from the drop down menu on the right</p>
+<form id="update-salesdetails-form-ajax">
+
+    <label for="input-salesinvoice">Sales Invoice: </label>
+    <select name="input-salesinvoice" id="mySelect">
+        <option value="test">Select a Sales Invoice</option>
+        {{#each data}}
+        <option value="{{this.idSalesDetails}}">{{this.idSalesDetails}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-product">Product: </label>
+    <select name="input-product" id="input-product-update">
+        <option>Select a Product</option>
+        {{#each products}}
+        <option value="{{this.idProduct}}">{{this.productName}}</option>
+        {{/each}}
+    </select>
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_salesdetails.js"></script>

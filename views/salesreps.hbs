@@ -1,0 +1,66 @@
+<h1>Sales Representatives</h1>
+<div class="topnav">
+<a href="/">Home</a>
+<a href="customers">Customers</a>
+<a class="active" href="salesreps">Sales Reps</a>
+<a href="terms">Terms</a>
+<a href="products">Products</a>
+<a href="salesinvoices">Sales Invoices</a>
+<a href="salesdetails">Sales Invoice Details</a>
+</div>
+<p>Browse, Add, and Delete Sales Representatives</p>
+<p>Search by first name using the field below. Partial last names are OK too!</p>
+<form id="search-salesrep-html" method='GET' action='/salesreps'>
+    <label for="input-firstname">Search by First Name: </label>
+    <input type="text" name="firstname" id="input-firstname-html-search">
+    
+    <input type="submit">
+    <a href='/salesreps'><button>Reset</button></a>
+</form>
+{{!-- Create a table --}}
+<table id="salesrep-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Sales Rep ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Title</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, businessname, firstname, lastname, address1, address2, city, state, zipscode, email and phone, in order --}}
+        {{#each data}}
+        <tr data-value={{this.idSalesRep}}>
+            <td>{{this.idSalesRep}}</td>
+            <td>{{this.firstName}}</td>
+            <td>{{this.lastName}}</td>
+            <td>{{this.title}}</td>
+            <td><button onclick="deleteSalesRep({{this.idSalesRep}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_salesrep.js"></script>
+<h2>Add A New Sales Representative</h2>
+<p>To add a new sales representative, please enter their information below and click `Submit`!</p>
+<form id="add-salesrep-form" method="POST" action="/add-salesrep-form"> 
+    <label for="input-firstname">First Name: </label>
+    <input type="text" name="input-firstname" id="input-firstname" required>
+
+    <label for="input-lastname">Last Name: </label>
+    <input type="text" name="input-lastname" id="input-lastname" required>
+
+    <label for="input-title">Title: </label>
+    <input type="text" name="input-title" id="input-title" required>
+
+    <input type="submit">
+</form>

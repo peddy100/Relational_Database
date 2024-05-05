@@ -1,0 +1,117 @@
+<!-- salesinvoices.hbs -->
+<h1>Sales Invoices</h1>
+<div class="topnav">
+<a href="/">Home</a>
+<a href="customers">Customers</a>
+<a href="salesreps">Sales Reps</a>
+<a href="terms">Terms</a>
+<a href="products">Products</a>
+<a class="active" href="salesinvoices">Sales Invoices</a>
+<a href="salesdetails">Sales Invoice Details</a>
+</div>
+<p>Browse, Add, Update, and Delete Sales Invoices</p>
+{{!-- Create a table --}}
+<table id="salesinvoices-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Sales Invoice ID</th>
+            <th>Date</th>
+            <th>Total Due($)</th>
+            <th>Customer ID</th>
+            <th>Term ID</th>
+            <th>Sales Rep ID</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the idSalesInvoice, data, totalDue, idCustomer, idTerm, idSalesRep in order --}}
+        {{#each data}}
+        <tr data-value={{this.idSalesInvoice}}>
+            <td>{{this.idSalesInvoice}}</td>
+            <td>{{this.date}}</td>
+            <td>{{this.totalDue}}</td>
+            <td>{{this.idCustomer}}</td>
+            <td>{{this.idTerm}}</td>
+            <td>{{this.idSalesRep}}</td>
+            <td><button onclick="deleteSalesInvoice({{this.idSalesInvoice}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_salesinvoice.js"></script>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Adding New Sales Invoice</h2>
+<p>To add a new Sales Invoice, please enter their information below and click 'Submit'!</p>
+<form id="add-salesinvoice-form-ajax">
+    <label for="input-date"> Date </label>
+    <input type="date" name="input-date" id="input-date" required>
+    
+    <label for="input-totalDue"> Total Due </label>
+    <input type="number" step="0.01" name="input-totalDue" id="input-totalDue" required>
+
+    <label for="input-idCustomer"> Customer </label>
+    <select name="input-idCustomer" id="input-idCustomer" required>
+        <option value="">Select a Customer</option>
+        {{#each customers}}
+        <option value="{{this.idCustomer}}">{{this.businessName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-idTerm"> Term </label>
+    <select name="input-idTerm" id="input-idTerm" required>
+        <option value="">Select a Term</option>
+        {{#each terms}}
+        <option value="{{this.idTerm}}">{{this.idTerm}}</option>
+        {{/each}}
+    </select>    
+
+    <label for="input-idSalesRep"> Sales Representive </label>
+    <select name="input-idSalesRep" id="input-idSalesRep">
+        <option value="">Select a Sales Rep</option>
+        {{#each salesreps}}
+        <option value="{{this.idSalesRep}}">{{this.firstName}} {{this.lastName}}</option>
+        {{/each}}
+        <option value="">None</option>
+    </select>
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_salesinvoice.js"></script>
+
+{{!-- Form to update record  --}}
+<h2>Updating a Sales Invoice</h2>
+<p>To update a specific Sales Invoice's Sales Rep, select Sales Invoice ID and their Sales Rep from the drop down menu on the right</p>
+<form id="update-salesinvoice-form-ajax">
+
+    <label for="input-salesinvoice">Sales Invoice: </label>
+    <select name="input-salesinvoice" id="mySelect">
+        <option value="test">Select a Sales Invoice</option>
+        {{#each data}}
+        <option value="{{this.idSalesInvoice}}">{{this.idSalesInvoice}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-salesrep">Sales Rep: </label>
+    <select name="input-salesrep" id="input-salesrep-update">
+        <option>Select a Sales Rep</option>
+        {{#each salesreps}}
+        <option value="{{this.idSalesRep}}">{{this.firstName}} {{this.lastName}}</option>
+        {{/each}}
+        <option value="">None</option>
+    </select>
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_salesinvoice.js"></script>

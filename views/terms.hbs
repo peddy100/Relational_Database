@@ -1,0 +1,53 @@
+<!-- terms.hbs -->
+<h1>Terms</h1>
+<div class="topnav">
+<a href="/">Home</a>
+<a href="customers">Customers</a>
+<a href="salesreps">Sales Reps</a>
+<a class="active" href="terms">Terms</a>
+<a href="products">Products</a> | <a href="salesinvoices">Sales Invoices</a>
+<a href="salesdetails">Sales Invoice Details</a>
+</div>
+<p>Browse and Add Terms</p>
+{{!-- Create a table --}}
+<table id="terms-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Term ID</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the idTerm and description, in order --}}
+        {{#each data}}
+        <tr data-value={{this.id}}>
+            <td>{{this.idTerm}}</td>
+            <td>{{this.description}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Adding New Terms</h2>
+<p>To add a new Term, please enter their information below and click 'Submit'!</p>
+<form id="add-term-form-ajax">
+    <label for="input-term"> Term </label>
+    <input type="text" name="input-term" id="input-term" required>
+    
+    <label for="input-description"> Description </label>
+    <input type="text" name="input-description" id="input-description" required>
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_term.js"></script>
